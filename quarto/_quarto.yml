@@ -2,19 +2,21 @@ project:
   type: website
 
 website:
+  reader-mode: true
   sidebar:
     contents: auto
   navbar:
     left:
       - text: "Home"
         href: index.qmd
-      - text: "Manuscript"
-        href: _manuscript/index.html
 
 format:
   html:
     toc: true
+    code-fold: true
     lightbox: auto
 
 bibliography:
   - ../share/bibliography/research.bib
+
+wrap: preserve
