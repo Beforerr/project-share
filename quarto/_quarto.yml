@@ -1,0 +1,20 @@
+project:
+  type: website
+
+website:
+  sidebar:
+    contents: auto
+  navbar:
+    left:
+      - text: "Home"
+        href: index.qmd
+      - text: "Manuscript"
+        href: _manuscript/index.html
+
+format:
+  html:
+    toc: true
+    lightbox: auto
+
+bibliography:
+  - ../share/bibliography/research.bib
