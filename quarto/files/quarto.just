@@ -1,4 +1,6 @@
-[no-cd]
+setup-agu:
+  quarto add quarto-journals/agu --no-prompt
+
 preview: export
   #!/usr/bin/env sh
   if command -v nbdev_preview &> /dev/null; then
@@ -7,7 +9,6 @@ preview: export
     quarto preview
   fi
 
-[no-cd]
 publish:
   #!/usr/bin/env sh
   if command -v nbdev_proc_nbs &> /dev/null; then
@@ -18,11 +19,9 @@ publish:
     quarto publish gh-pages
   fi
 
-[no-cd]
 export:
   -nbdev_export
 
-[no-cd]
 render-man:
   quarto render --profile man
   cp -r _manuscript _site/
