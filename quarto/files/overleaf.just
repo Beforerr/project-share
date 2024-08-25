@@ -1,4 +1,4 @@
-overleaf_repo := ""
+overleaf_repo := x'https://git@git.overleaf.com/$OVERLEAF_ID'
 
 clone_overleaf:
   git clone {{overleaf_repo}} overleaf
@@ -8,10 +8,10 @@ update_overleaf: sync_overleaf
 
 sync_overleaf: tex_render tex_keep_document tex_export_bib tex_clean
 
-tex_render to="pdf":
+tex_render:
   #!/usr/bin/env bash
   touch files/bibexport.bib
-  quarto render --profile man --to {{to}}
+  quarto render --profile man --to $OVERLEAF_FMT
   rsync _manuscript/_tex/ overleaf/ -r
   rsync article_files overleaf -r
 
