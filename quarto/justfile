@@ -2,7 +2,7 @@ import 'files/quarto.just'
 import 'files/overleaf.just'
 
 default:
-  just --list
+    just --list
 
 ensure-env:
-  rsync --update --recursive ~/projects/share/quarto/ ./
+    rsync --update --recursive ~/projects/share/quarto/ ./
