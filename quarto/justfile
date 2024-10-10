@@ -1,8 +1,12 @@
 import 'files/quarto.just'
 import 'files/overleaf.just'
+import? 'files/languages.just'
 
 default:
     just --list
 
 ensure-env:
+
+fetch:
     rsync --update --recursive ~/projects/share/quarto/ ./
+    rsync --update --recursive ~/projects/share/files/ ./files
