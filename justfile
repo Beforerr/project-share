@@ -1,3 +1,8 @@
+import 'quarto/files/overleaf.just'
+
+default:
+    just --list
+
 [private]
 ln-bib:
     mkdir -p files/bibliography
