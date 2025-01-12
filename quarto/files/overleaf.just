@@ -36,7 +36,11 @@ tex-clean:
 
 update-agu-format file:
     #!/usr/bin/env bash
-    sed -i '' '/\\usepackage\[\]\{natbib\}/d; /\\bibliographystyle\{plainnat\}/d' {{ file }}
-    sed -i '' 's/\\citep\(\[\(.*\)\]\[\(.*\)\]\)/\\cite<\2>[\3]/g' {{ file }}
+    sed -i '' '/\\usepackage\[[^]]*\]{natbib}/d; /\\bibliographystyle{plainnat}/d' {{ file }}
+    sed -E -i '' 's/\\citep\[([^]]*)\]\[([^]]*)\]\{([^}]*)\}/\\cite<\1>[\2]{\3}/g' {{ file }}
     sed -i '' 's/\\citep/\\cite/g' {{ file }}
     sed -i '' 's/\\citet/\\citeA/g' {{ file }}
+
+
+_update-agu-format_linux file:
+    sed -i '' '/\\usepackage\[\]\{natbib\}/d; /\\bibliographystyle\{plainnat\}/d' {{ file }}
