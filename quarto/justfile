@@ -10,3 +10,5 @@ ensure-env:
 fetch:
     rsync --update --recursive ~/projects/share/quarto/ ./
     rsync --update --recursive ~/projects/share/files/ ./files
+    # quarto just file
+    rsync --update --recursive ~/projects/share/quarto/files/ ./files

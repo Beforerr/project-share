@@ -1,9 +1,11 @@
 # remove "\pandocbounded{...}" keep "..."
+[no-cd]
 update-qmd file:
     #!/usr/bin/env bash
     sed -E -i '' 's/\\pandocbounded\{([^}]*)\}/\1/g' {{ file }}
 
 # change from "\[ ... \]" to "$$ ... $$" and from "\(...\)" to "$...$"
+[no-cd]
 update-mathenv file:
     #!/usr/bin/env bash
     sed -i '' 's/\\\[/\$\$/g' {{ file }}
@@ -11,19 +13,19 @@ update-mathenv file:
     sed -i '' 's/\\(/\$/g' {{ file }}
     sed -i '' 's/\\)/\$/g' {{ file }}
 
-[private]
-tex-clean:
+[no-cd]
+clean:
     -rm *.{aux,bbl,blg,log,tex}
     -rm trackchanges.sty *.cls
 
-[private]
-tex-keep-document file:
+[no-cd]
+keep-document file:
     #!/usr/bin/env bash
     temp_file=$(mktemp)
     awk '/\\begin\{document\}/ {flag=1; next} /\\end\{document\}/ {flag=0} flag' {{ file }} | awk '!/\\maketitle/' > $temp_file
     mv $temp_file {{ file }}
 
-[private]
+[no-cd]
 update-agu-format file:
     #!/usr/bin/env bash
     sed -i '' '/\\usepackage\[[^]]*\]{natbib}/d; /\\bibliographystyle{plainnat}/d' {{ file }}
@@ -33,3 +35,9 @@ update-agu-format file:
 
 _update-agu-format_linux file:
     sed -i '' '/\\usepackage\[\]\{natbib\}/d; /\\bibliographystyle\{plainnat\}/d' {{ file }}
+
+[no-cd]
+export-bib:
+    #!/usr/bin/env bash
+    command -v bibexport >/dev/null || tlmgr install bibexport
+    bibexport -o files/bibexport.bib --nosave *.aux
