@@ -4,10 +4,19 @@
 
 __pycache__/
 
+# Quarto
 _site
 _manuscript
 _docs
 _proc
 /.quarto/
 *_files/
+
+# Overleaf
 overleaf/
+
+# IDE / Editor
+.vscode/
+
+# Ignore files in the presentation folder starting with an underscore
+presentations/_*
