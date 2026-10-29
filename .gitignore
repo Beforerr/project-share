@@ -20,3 +20,4 @@ overleaf/
 
 # Ignore files in the presentation folder starting with an underscore
 presentations/_*
+!notes/**/research.bib
